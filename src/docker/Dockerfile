@@ -272,11 +272,27 @@ RUN asdf plugin add helmfile \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
 # Install Terraform. Get versions using 'asdf list all terraform'
-ARG TERRAFORM_VERSION="1.3.3"
+ARG TERRAFORM_VERSION="1.6.5"
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 RUN asdf plugin add terraform \
   && asdf install terraform "${TERRAFORM_VERSION}" \
   && asdf global terraform "${TERRAFORM_VERSION}" \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
+# Install Terragrunt. Get versions using 'asdf list all terragrunt'
+ARG TERRAGRUNT_VERSION="0.53.2"
+ENV TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION}
+RUN asdf plugin add terragrunt \
+  && asdf install terragrunt "${TERRAGRUNT_VERSION}" \
+  && asdf global terragrunt "${TERRAGRUNT_VERSION}" \
+  && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
+# Install Azure CLI. Get versions using 'asdf list all azure-cli'
+ARG AZURE_CLI_VERSION="2.53.1"
+ENV AZURE_CLI_VERSION=${AZURE_CLI_VERSION}
+RUN asdf plugin add azure-cli \
+  && asdf install azure-cli "${AZURE_CLI_VERSION}" \
+  && asdf global azure-cli "${AZURE_CLI_VERSION}" \
   && rm -rf /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
 # Install terraform-docs. Get versions using 'asdf list all terraform-docs'
